@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import Colors from '../constants/Colors';
 import { TextInput , View, StyleSheet, Alert} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Title from '../components/ui/Title';
+import Cards from '../components/ui/Cards';
+import InstructionText from '../components/ui/InstractionText';
 
 
 function StartGameScreen({onPickNumber}){
@@ -16,7 +18,7 @@ function StartGameScreen({onPickNumber}){
         const choseenNumber = parseInt(enteredNumber);
         if(isNaN(choseenNumber) || choseenNumber <=0 || choseenNumber >99){
             // show alert 
-            Alert.alert('Invalid number!','Number has to be a number bbetween 1 and 99',
+            Alert.alert('Invalid number!','Number has to be a number between 1 and 99',
             [{text: 'Okay', style: 'destructive', onPress: resetEnteredNumber}]
             );
             
@@ -25,7 +27,10 @@ function StartGameScreen({onPickNumber}){
         onPickNumber(choseenNumber);
     }
     return( 
-    <View style={styles.inputContainer}>
+    <View style={styles.rootContainer}>
+        <Title>Guess My Number</Title>     
+    <Cards >
+        <InstructionText style={styles.instructionText}>Enter a Number</InstructionText>
         <TextInput style={styles.numberInput} maxLength={2} 
         keyboardType="number-pad"
         autoCapitalize="none"
@@ -44,6 +49,7 @@ function StartGameScreen({onPickNumber}){
             </View>
         </View>
 
+    </Cards>
     </View>
     )
 }
@@ -51,23 +57,13 @@ function StartGameScreen({onPickNumber}){
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 16,
+    rootContainer: {
+        flex: 1,
         marginTop: 100,
-        backgroundColor: Colors.primaryDark,
-        marginHorizontal: 24,
-        borderRadius: 8,
-        elevation: 4,
-        // shadow effect for IOS 
-        shadowColor: "black",
-        shadowOffset: {width: 0, height: 2},
-        shadowRadius: 6,
-        shadowOpacity: 1,
-        // shadow effect for IOS
-
+        alignItems: "center"
     },
+   
+    
     numberInput:{
         height: 50,
         width: 50,
@@ -79,6 +75,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         width: 45,
         textAlign: "center",
+    },
+    instructionText:{
+        marginBottom: 12,
     },
     buttonsContainer:{
         flexDirection: "row",
