@@ -7,6 +7,7 @@ import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import { useState } from 'react';
 import GameOverScreen from './screens/GameOverScreen';
+import { StatusBar } from 'react-native';
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -49,7 +50,8 @@ export default function App() {
   }
 
   return (
-
+    <>
+    <StatusBar style='light'/>
     <LinearGradient colors={['#72063c','#ddb52f']} 
       style={styles.rootScreen}>
       <ImageBackground source={require('./assets/images/dice.jpg')}
@@ -62,6 +64,7 @@ export default function App() {
       </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
+    </>
   );
 }
 
